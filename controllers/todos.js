@@ -21,4 +21,19 @@ module.exports = {
       .then(todos => res.status(200).send(todos))
       .catch(error => res.status(400).send(error));
   },
+  destroy(req, res) {
+    return Todo.findByPk(req.params.todoId)
+      .then(todo => {
+        if (!todo) {
+          return res.status(400).send({
+            message: 'Todo not found',
+          });
+        }
+
+        todo.destroy();
+
+        return res.status(200).send(todo);
+      })
+      .catch(error => res.status(400).send(error));
+  },
 };
