@@ -10,9 +10,7 @@ app.use(
   }),
 );
 
-app.get('/', (req, res) => {
-  res.json({ message: 'REST API with Node.js, and Postgres API' });
-});
+require('./routes/index')(app);
 
 app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}.`);
